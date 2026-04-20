@@ -707,7 +707,7 @@
             addSection('Farben:', formData.get('farben') || 'Keine Präferenz');
             addSection('Budget:', (formData.get('budget') || 'Nicht angegeben').toUpperCase());
             addSection('Timeline:', (formData.get('timeline') || 'Nicht angegeben').toUpperCase());
-            addSection('Dringlichkeit:', formData.get('dringlichkeit') || '3' + ' / 5');
+            addSection('Dringlichkeit:', (formData.get('dringlichkeit') || '3') + ' / 5');
             addSection('Nachricht:', formData.get('nachricht') || 'Keine zusätzlichen Informationen');
             
             // Footer
@@ -725,11 +725,10 @@
             // Download PDF
             doc.save('Anfrage-Zusammenfassung.pdf');
             
-            // Also open mailto to Pascal
+            // Open mailto in new window (Safari compatibility)
             const subject = encodeURIComponent('Neue Webdesign-Anfrage');
             const body = encodeURIComponent(emailBody);
-            const mailtoLink = 'mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body;
-            location.href = mailtoLink;
+            window.open('mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body, '_blank');
             
             // Show success message
             this.style.display = 'none';
