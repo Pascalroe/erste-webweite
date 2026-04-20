@@ -438,36 +438,38 @@
             color: var(--gray-600);
             font-size: 0.9rem;
         }
-        .pricing-features-preview li::before {
-            content: "✓ ";
-            color: var(--primary);
-            font-weight: 600;
-            margin-right: 6px;
-        }
-        .pricing-card .btn {
+        .pricing-features-preview {
             display: none;
         }
-        .pricing-buttons {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
+        .pricing-card .pricing-cta {
+            margin-top: 24px;
         }
-        .pricing-buttons .btn {
-            flex: 1;
-            padding: 10px 8px;
-            font-size: 0.8rem;
-            text-align: center;
-            white-space: nowrap;
+        .pricing-card .pricing-cta .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
         }
-        .btn-sm {
-            padding: 10px 16px !important;
-            font-size: 0.85rem;
+        .pricing-card .pricing-cta .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
-        .btn-accent {
+        .pricing-card.featured .pricing-cta .btn {
             background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
         }
-        .btn-accent:hover {
+        .pricing-card.featured .pricing-cta .btn:hover {
             background: linear-gradient(135deg, #67e8f9 0%, #22d3ee 100%);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+        }
+        .pricing-buttons {
+            display: none;
         }
         
         /* Wartung */
@@ -857,7 +859,13 @@
                 padding: 2px 0;
                 color: var(--gray-600);
             }
-            .pricing-card .btn {
+            .pricing-features {
+                display: none;
+            }
+            .pricing-features-preview {
+                display: block;
+            }
+            .pricing-cta {
                 display: none;
             }
             .pricing-buttons {
@@ -871,13 +879,16 @@
                 padding: 8px 6px;
                 font-size: 0.65rem;
                 border-radius: 4px;
+                text-decoration: none;
+                text-align: center;
+                font-weight: 600;
             }
             .pricing-buttons .btn-outline {
                 background: transparent;
                 border: 1px solid var(--primary);
                 color: var(--primary);
             }
-            .pricing-card.featured .btn-accent {
+            .pricing-buttons .btn-accent {
                 background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
                 color: white;
                 border: none;
@@ -1045,6 +1056,9 @@
                             <li>DSGVO-konform (ohne Cookies)</li>
                             <li>Übergabe aller Dateien</li>
                         </ul>
+                        <div class="pricing-cta">
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
                             <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
@@ -1063,7 +1077,7 @@
                         </ul>
                         <ul class="pricing-features">
                             <li>Alles aus Basis</li>
-                            <li>Bis zu 5 Unterseiten</li>
+                            <li>BIS zu 5 Unterseiten</li>
                             <li>Bildergalerie für Projekte & Team</li>
                             <li>Vorher-Nachher-Bereich für Referenzen</li>
                             <li>Google Maps (datenschutzkonform)</li>
@@ -1072,6 +1086,9 @@
                             <li>Textunterstützung durch KI</li>
                             <li>2 Revisionsrunden inklusive</li>
                         </ul>
+                        <div class="pricing-cta">
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn">Mehr erfahren</a>
                             <a href="kontakt.html" class="btn btn-sm btn-accent">Anfragen</a>
@@ -1098,6 +1115,9 @@
                             <li>DSGVO-freundliche Analytics-Alternative</li>
                             <li>3 Revisionsrunden inklusive</li>
                         </ul>
+                        <div class="pricing-cta">
+                            <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        </div>
                         <div class="pricing-buttons">
                             <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
                             <a href="kontakt.html" class="btn btn-sm">Anfragen</a>
