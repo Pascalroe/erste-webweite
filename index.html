@@ -448,6 +448,15 @@
             font-weight: 600;
             margin-right: 6px;
         }
+        .maintenance-card .btn {
+            display: none;
+            margin-top: 16px;
+            padding: 12px 20px;
+            font-size: 0.875rem;
+        }
+        .maintenance-card .features-preview {
+            display: none;
+        }
         
         .cta-box {
             text-align: center;
@@ -717,6 +726,49 @@
             .pricing-card.featured .btn {
                 display: block;
             }
+            
+            /* Mobile Maintenance Cards: Same as Packages */
+            .maintenance-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .maintenance-card {
+                padding: 20px 12px;
+            }
+            .maintenance-card h4 {
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+            .maintenance-card .price {
+                font-size: 1.3rem;
+                margin-bottom: 0;
+            }
+            .maintenance-card .price span {
+                font-size: 0.7rem;
+            }
+            .maintenance-card ul {
+                display: none;
+            }
+            .maintenance-card .btn {
+                display: block;
+                padding: 10px 12px;
+                font-size: 0.7rem;
+                margin-top: 12px;
+            }
+            .maintenance-card .features-preview {
+                display: block;
+                text-align: center;
+                margin-bottom: 10px;
+                list-style: none;
+            }
+            .maintenance-card .features-preview li {
+                font-size: 0.65rem;
+                padding: 2px 0;
+                color: var(--gray-600);
+            }
+            .maintenance-card.alt .features-preview li {
+                color: rgba(255,255,255,0.85);
+            }
         }
     </style>
 </head>
@@ -874,6 +926,11 @@
                         <article class="maintenance-card">
                             <h4>Essenziell</h4>
                             <div class="price">19€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Hosting-Betreuung</li>
+                                <li>Domain-Management</li>
+                                <li>SSL automatisch</li>
+                            </ul>
                             <ul>
                                 <li>Hosting-Betreuung (Cloudflare)</li>
                                 <li>Domain-Verlängerungs-Management</li>
@@ -881,22 +938,34 @@
                                 <li>Erreichbarkeits-Monitoring</li>
                                 <li>Jährlicher Sicherheits-Check</li>
                             </ul>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                         
                         <article class="maintenance-card">
                             <h4>Pflege</h4>
                             <div class="price">29€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Alles aus Essenziell</li>
+                                <li>2 Änderungen/Monat</li>
+                                <li>Support 48h</li>
+                            </ul>
                             <ul>
                                 <li>Alles aus Essenziell</li>
                                 <li>2 kleine Änderungen pro Monat</li>
                                 <li>Jährlicher Funktions-Check</li>
                                 <li>E-Mail-Support binnen 48h</li>
                             </ul>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                         
                         <article class="maintenance-card">
                             <h4>Aktiv</h4>
                             <div class="price">59€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Alles aus Pflege</li>
+                                <li>5 Änderungen/Monat</li>
+                                <li>Support 24h</li>
+                            </ul>
                             <ul>
                                 <li>Alles aus Pflege</li>
                                 <li>Bis zu 5 Änderungen pro Monat</li>
@@ -904,6 +973,7 @@
                                 <li>Quartalsweiser SEO-Check</li>
                                 <li>Priorisierter Support binnen 24h</li>
                             </ul>
+                            <button class="btn btn-outline" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                     </div>
                 </div>
@@ -914,31 +984,49 @@
                         <article class="maintenance-card alt">
                             <h4>Self-Service</h4>
                             <div class="price">0€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Kein Hosting</li>
+                                <li>Selbstorganisation</li>
+                                <li>Änderungen auf Anfrage</li>
+                            </ul>
                             <ul>
                                 <li>Kein Hosting, keine Pflege</li>
                                 <li>Sie kümmern sich selbst</li>
                                 <li>Änderungen auf Anfrage</li>
                             </ul>
+                            <button class="btn" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                         
                         <article class="maintenance-card alt">
                             <h4>Domain & Hosting</h4>
                             <div class="price">19–24€ <span>/Monat</span></div>
+                            <ul class="features-preview">
+                                <li>Jährlich/Monatlich</li>
+                                <li>2 Änderungen/Monat</li>
+                                <li>Umsetzung 48h</li>
+                            </ul>
                             <ul>
                                 <li>Jährlich (19€) oder monatlich (24€)</li>
                                 <li>Inklusive 2 kleine Änderungen pro Monat</li>
                                 <li>Umsetzung innerhalb 48h</li>
                             </ul>
+                            <button class="btn" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                         
                         <article class="maintenance-card alt">
                             <h4>Ultimative Betreuung</h4>
                             <div class="price">auf Anfrage</div>
+                            <ul class="features-preview">
+                                <li>Premium inklusive</li>
+                                <li>8 Änderungen/Monat</li>
+                                <li>Alles aus einer Hand</li>
+                            </ul>
                             <ul>
                                 <li>Premium-Paket inklusive</li>
                                 <li>Bis zu 8 Änderungen pro Monat</li>
                                 <li>Alles aus einer Hand</li>
                             </ul>
+                            <button class="btn" onclick="toggleDetails(this)">Mehr erfahren</button>
                         </article>
                     </div>
                 </div>
@@ -1088,6 +1176,23 @@
                 document.body.style.overflow = '';
             });
         });
+        
+        // Toggle Details for Maintenance Cards
+        function toggleDetails(btn) {
+            const card = btn.closest('.maintenance-card');
+            const fullList = card.querySelector('ul:not(.features-preview)');
+            const previewList = card.querySelector('.features-preview');
+            
+            if (fullList.style.display === 'block') {
+                fullList.style.display = 'none';
+                previewList.style.display = 'block';
+                btn.textContent = 'Mehr erfahren';
+            } else {
+                fullList.style.display = 'block';
+                previewList.style.display = 'none';
+                btn.textContent = 'Weniger anzeigen';
+            }
+        }
     </script>
 </body>
 </html>
