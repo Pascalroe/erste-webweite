@@ -818,31 +818,32 @@
                 grid-template-columns: 1fr;
             }
             
-            /* Mobile Pricing: 3 Pakete nebeneinander */
+            /* Mobile Pricing: Mittel groß, außen klein */
             .pricing-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 12px;
+                grid-template-columns: 1fr 1.3fr 1fr;
+                gap: 8px;
+                align-items: start;
             }
             .pricing-card {
-                padding: 20px 12px;
+                padding: 16px 10px;
             }
             .pricing-card.featured {
                 transform: none;
-                order: -1;
+                padding: 24px 14px;
             }
             .pricing-card.featured:hover {
                 transform: none;
             }
             .pricing-label {
-                font-size: 0.65rem;
-                letter-spacing: 1px;
+                font-size: 0.6rem;
+                letter-spacing: 0.5px;
             }
             .pricing-card h3 {
-                font-size: 1rem;
-                margin-bottom: 4px;
+                font-size: 0.9rem;
+                margin-bottom: 2px;
             }
             .pricing-price {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
             }
             .pricing-price span {
                 font-size: 0.7rem;
