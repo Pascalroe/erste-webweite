@@ -49,6 +49,10 @@
             z-index: 100;
             border-bottom: 1px solid var(--gray-200);
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+        nav.hidden {
+            transform: translateY(-100%);
         }
         nav .container {
             display: flex;
@@ -655,7 +659,7 @@
     </header>
     
     <!-- Choice Section -->
-    <section class="choice" aria-labelledby="choice-title">
+    <section class="choice" id="auswahl" aria-labelledby="choice-title">
         <div class="container">
             <h2 id="choice-title" class="section-title">Was können wir für Sie tun?</h2>
             <p class="section-subtitle">Wählen Sie die Option, die am besten zu Ihrer Situation passt.</p>
@@ -941,5 +945,25 @@
             <p class="copyright">&copy; 2026 Webdesign. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
+    
+    <script>
+        // Hide navbar on scroll down, show on scroll up
+        let lastScrollY = window.scrollY;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down
+                nav.classList.add('hidden');
+            } else {
+                // Scrolling up
+                nav.classList.remove('hidden');
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+    </script>
 </body>
 </html>
