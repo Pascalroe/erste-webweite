@@ -362,6 +362,30 @@
             font-weight: 600;
             margin-right: 8px;
         }
+        .pricing-features-preview {
+            list-style: none;
+            margin: 16px 0;
+            text-align: center;
+        }
+        .pricing-features-preview li {
+            padding: 4px 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+        .pricing-features-preview li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        .pricing-card .btn {
+            display: none;
+        }
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: 600;
+            margin-right: 8px;
+        }
         
         /* Wartung */
         .wartung {
@@ -456,86 +480,6 @@
         }
         .maintenance-card .features-preview {
             display: none;
-        }
-        
-        /* Detail Modal Overlay */
-        .detail-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .detail-modal.open {
-            display: flex;
-        }
-        .detail-modal .modal-content {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 32px;
-            max-width: 400px;
-            width: 100%;
-            position: relative;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        .detail-modal .close-btn {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            background: var(--gray-100);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            font-size: 1.25rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-600);
-        }
-        .detail-modal .close-btn:hover {
-            background: var(--gray-200);
-        }
-        .detail-modal h4 {
-            font-size: 1.5rem;
-            color: var(--gray-900);
-            margin-bottom: 8px;
-        }
-        .detail-modal .price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        .detail-modal ul {
-            list-style: none;
-            text-align: left;
-        }
-        .detail-modal li {
-            padding: 8px 0;
-            color: var(--gray-600);
-            border-bottom: 1px solid var(--gray-100);
-        }
-        .detail-modal li:last-child {
-            border-bottom: none;
-        }
-        .detail-modal li::before {
-            content: "✓ ";
-            color: var(--primary);
-            font-weight: 600;
-            margin-right: 8px;
-        }
-        .detail-modal .modal-btn {
-            margin-top: 24px;
-            width: 100%;
         }
         
         .cta-box {
@@ -821,6 +765,15 @@
             .pricing-features {
                 display: none;
             }
+            .pricing-features-preview {
+                display: block;
+                list-style: none;
+            }
+            .pricing-features-preview li {
+                font-size: 0.65rem;
+                padding: 2px 0;
+                color: var(--gray-600);
+            }
             .pricing-card .btn {
                 display: block;
                 padding: 10px 12px;
@@ -910,17 +863,6 @@
     
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobile-menu">
-    
-    <!-- Detail Modal -->
-    <div class="detail-modal" id="detail-modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">×</button>
-            <h4 id="modal-title"></h4>
-            <div class="price" id="modal-price"></div>
-            <ul id="modal-list"></ul>
-            <a href="kontakt.html" class="btn modal-btn">Jetzt anfragen</a>
-        </div>
-    </div>
         <a href="#auswahl" class="mobile-link">Auswahl</a>
         <a href="#pakete" class="mobile-link">Pakete</a>
         <a href="#wartung" class="mobile-link">Wartung</a>
@@ -987,6 +929,11 @@
                         <div class="pricing-label">Einstieg</div>
                         <h3>Basis</h3>
                         <div class="pricing-price">690€ <span>/ einmalig</span></div>
+                        <ul class="pricing-features-preview">
+                            <li>One-Pager Website</li>
+                            <li>Responsives Design</li>
+                            <li>Hosting inklusive</li>
+                        </ul>
                         <ul class="pricing-features">
                             <li>Einseitige Website (One-Pager)</li>
                             <li>Responsives Design</li>
@@ -996,7 +943,7 @@
                             <li>DSGVO-konform (ohne Cookies)</li>
                             <li>Übergabe aller Dateien</li>
                         </ul>
-                        <a href="#kontakt" class="btn btn-outline">Jetzt anfragen</a>
+                        <button class="btn btn-outline" onclick="toggleDetailsPricing(this)">Mehr erfahren</button>
                     </article>
                     
                     <!-- Standard -->
@@ -1004,6 +951,11 @@
                         <div class="pricing-label">Beliebt</div>
                         <h3>Standard</h3>
                         <div class="pricing-price">1.290€ <span>/ einmalig</span></div>
+                        <ul class="pricing-features-preview">
+                            <li>5 Unterseiten</li>
+                            <li>Bildergalerie</li>
+                            <li>SEO-optimiert</li>
+                        </ul>
                         <ul class="pricing-features">
                             <li>Alles aus Basis</li>
                             <li>Bis zu 5 Unterseiten</li>
@@ -1015,7 +967,7 @@
                             <li>Textunterstützung durch KI</li>
                             <li>2 Revisionsrunden inklusive</li>
                         </ul>
-                        <a href="kontakt.html" class="btn">Jetzt anfragen</a>
+                        <button class="btn" onclick="toggleDetailsPricing(this)">Mehr erfahren</button>
                     </article>
                     
                     <!-- Premium -->
@@ -1023,6 +975,11 @@
                         <div class="pricing-label">Premium</div>
                         <h3>Premium</h3>
                         <div class="pricing-price">2.490€ <span>/ einmalig</span></div>
+                        <ul class="pricing-features-preview">
+                            <li>10 Unterseiten</li>
+                            <li>Individuelles Design</li>
+                            <li>Blog-Bereich</li>
+                        </ul>
                         <ul class="pricing-features">
                             <li>Alles aus Standard</li>
                             <li>Bis zu 10 Unterseiten</li>
@@ -1033,7 +990,7 @@
                             <li>DSGVO-freundliche Analytics-Alternative</li>
                             <li>3 Revisionsrunden inklusive</li>
                         </ul>
-                        <a href="#kontakt" class="btn btn-outline">Jetzt anfragen</a>
+                        <button class="btn btn-outline" onclick="toggleDetailsPricing(this)">Mehr erfahren</button>
                     </article>
                 </div>
             </div>
@@ -1283,40 +1240,39 @@
             });
         });
         
-        // Toggle Details for Maintenance Cards - Opens Modal
+        // Toggle Details for Maintenance Cards
         function toggleDetails(btn) {
             const card = btn.closest('.maintenance-card');
-            const title = card.querySelector('h4').textContent;
-            const price = card.querySelector('.price').innerHTML;
             const fullList = card.querySelector('ul:not(.features-preview)');
-            const listItems = fullList.querySelectorAll('li');
+            const previewList = card.querySelector('.features-preview');
             
-            document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-price').innerHTML = price;
-            
-            const modalList = document.getElementById('modal-list');
-            modalList.innerHTML = '';
-            listItems.forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = item.textContent;
-                modalList.appendChild(li);
-            });
-            
-            document.getElementById('detail-modal').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeModal() {
-            document.getElementById('detail-modal').classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        
-        // Close modal on background click
-        document.getElementById('detail-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+            if (fullList.style.display === 'block') {
+                fullList.style.display = 'none';
+                previewList.style.display = 'block';
+                btn.textContent = 'Mehr erfahren';
+            } else {
+                fullList.style.display = 'block';
+                previewList.style.display = 'none';
+                btn.textContent = 'Weniger anzeigen';
             }
-        });
+        }
+        
+        // Toggle Details for Pricing Cards
+        function toggleDetailsPricing(btn) {
+            const card = btn.closest('.pricing-card');
+            const fullList = card.querySelector('.pricing-features');
+            const previewList = card.querySelector('.pricing-features-preview');
+            
+            if (fullList.style.display === 'block') {
+                fullList.style.display = 'none';
+                previewList.style.display = 'block';
+                btn.textContent = 'Mehr erfahren';
+            } else {
+                fullList.style.display = 'block';
+                previewList.style.display = 'none';
+                btn.textContent = 'Weniger anzeigen';
+            }
+        }
     </script>
 </body>
 </html>
