@@ -672,14 +672,50 @@
             section {
                 padding: 60px 0;
             }
-            .pricing-card.featured {
-                transform: none;
-            }
-            .pricing-card.featured:hover {
-                transform: translateY(-8px);
-            }
             .process-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            /* Mobile Pricing: 3 Pakete nebeneinander */
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .pricing-card {
+                padding: 20px 12px;
+            }
+            .pricing-card.featured {
+                transform: none;
+                order: -1;
+            }
+            .pricing-card.featured:hover {
+                transform: none;
+            }
+            .pricing-label {
+                font-size: 0.65rem;
+                letter-spacing: 1px;
+            }
+            .pricing-card h3 {
+                font-size: 1rem;
+                margin-bottom: 4px;
+            }
+            .pricing-price {
+                font-size: 1.5rem;
+            }
+            .pricing-price span {
+                font-size: 0.7rem;
+            }
+            .pricing-features {
+                display: none;
+            }
+            .pricing-card .btn {
+                display: block;
+                padding: 10px 12px;
+                font-size: 0.75rem;
+                margin-top: 12px;
+            }
+            .pricing-card.featured .btn {
+                display: block;
             }
         }
     </style>
