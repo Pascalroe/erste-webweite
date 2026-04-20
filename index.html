@@ -175,6 +175,47 @@
             font-size: 1.1rem;
         }
         
+        /* Choice Section */
+        .choice {
+            background: var(--gray-50);
+            padding: 80px 0;
+        }
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 900px;
+            margin: 50px auto 0;
+        }
+        .choice-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 48px 40px;
+            text-align: center;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+        .choice-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 20px 50px rgba(30, 64, 175, 0.12);
+            transform: translateY(-8px);
+        }
+        .choice-card .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .choice-card h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+        .choice-card p {
+            color: var(--gray-600);
+            margin-bottom: 28px;
+            font-size: 1.05rem;
+        }
+        
         /* Pakete */
         .pakete {
             background: var(--gray-50);
@@ -526,6 +567,9 @@
         
         /* Mobile */
         @media (max-width: 900px) {
+            .choice-grid {
+                grid-template-columns: 1fr;
+            }
             .pricing-grid,
             .maintenance-grid,
             .faq-grid {
@@ -578,6 +622,7 @@
         <div class="container">
             <div class="logo">Webdesign</div>
             <div class="nav-links">
+                <a href="#auswahl">Auswahl</a>
                 <a href="#pakete">Pakete</a>
                 <a href="#wartung">Wartung</a>
                 <a href="#prozess">Prozess</a>
@@ -608,6 +653,30 @@
             <a href="#kontakt" class="btn btn-large">Jetzt anfragen</a>
         </div>
     </header>
+    
+    <!-- Choice Section -->
+    <section class="choice" aria-labelledby="choice-title">
+        <div class="container">
+            <h2 id="choice-title" class="section-title">Was können wir für Sie tun?</h2>
+            <p class="section-subtitle">Wählen Sie die Option, die am besten zu Ihrer Situation passt.</p>
+            
+            <div class="choice-grid">
+                <article class="choice-card">
+                    <div class="icon">🆕</div>
+                    <h3>Neue Webseite erstellen</h3>
+                    <p>Sie haben noch keine Webseite? Wir erstellen eine komplett neue, maßgeschneiderte Lösung für Sie – von Grund auf.</p>
+                    <a href="#pakete" class="btn btn-large">Pakete ansehen</a>
+                </article>
+                
+                <article class="choice-card">
+                    <div class="icon">🔄</div>
+                    <h3>Webseite erneuern (Relaunch)</h3>
+                    <p>Sie haben bereits eine Webseite, die nicht mehr aktuell ist? Wir modernisieren und relaunchen sie für Sie.</p>
+                    <a href="#kontakt" class="btn btn-large btn-outline">Kostenlose Einschätzung</a>
+                </article>
+            </div>
+        </div>
+    </section>
     
     <main id="main-content">
         <!-- Pakete Section -->
