@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt & Fragebogen – Webdesign</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -265,11 +263,6 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
-        .btn:disabled {
-            background: var(--gray-400);
-            cursor: not-allowed;
-            transform: none;
-        }
         .btn-group {
             display: flex;
             gap: 16px;
@@ -297,40 +290,6 @@
         }
         .success-message p {
             color: var(--gray-600);
-            margin-bottom: 16px;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--success);
-            color: var(--white);
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            margin-top: 10px;
-        }
-        .download-btn:hover {
-            background: #15803d;
-            transform: translateY(-2px);
-        }
-        
-        /* Error Message */
-        .error-message {
-            display: none;
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            color: #dc2626;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .error-message.show {
-            display: block;
         }
         
         /* Skip Link */
@@ -351,22 +310,6 @@
         :focus-visible {
             outline: 3px solid var(--accent);
             outline-offset: 2px;
-        }
-        
-        /* Loading Spinner */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: var(--white);
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
         
         /* Mobile */
@@ -405,11 +348,7 @@
             <p class="page-subtitle">Erzählen Sie uns von Ihrem Projekt – wir melden uns so schnell wie möglich.</p>
             
             <div class="form-card">
-                <div class="error-message" id="error-message">
-                    Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt an: pascalroe@proton.me
-                </div>
-                
-                <form id="questionnaire-form">
+                <form id="questionnaire-form" action="https://formspree.io/f/xpwzgqvd" method="POST">
                     
                     <!-- Section 1: About You -->
                     <div class="form-section">
@@ -444,7 +383,7 @@
                         
                         <div class="option-group">
                             <label class="option-item">
-                                <input type="radio" name="projektart" value="neue-webseite" required>
+                                <input type="radio" name="projektart" value="Neue Webseite erstellen" required>
                                 <div class="option-text">
                                     <div class="option-title">Neue Webseite erstellen</div>
                                     <div class="option-desc">Ich habe noch keine Webseite und möchte eine professionelle Presence aufbauen.</div>
@@ -452,7 +391,7 @@
                             </label>
                             
                             <label class="option-item">
-                                <input type="radio" name="projektart" value="webseite-erneuern">
+                                <input type="radio" name="projektart" value="Webseite erneuern (Relaunch)">
                                 <div class="option-text">
                                     <div class="option-title">Webseite erneuern (Relaunch)</div>
                                     <div class="option-desc">Ich habe bereits eine Webseite, die modernisiert werden soll.</div>
@@ -460,7 +399,7 @@
                             </label>
                             
                             <label class="option-item">
-                                <input type="radio" name="projektart" value="sonstiges">
+                                <input type="radio" name="projektart" value="Sonstiges">
                                 <div class="option-text">
                                     <div class="option-title">Sonstiges</div>
                                     <div class="option-desc">Etwas anderes – kontaktieren Sie uns für Details.</div>
@@ -630,18 +569,14 @@
                     </div>
                     
                     <div class="btn-group">
-                        <button type="submit" class="btn" id="submit-btn">Anfrage absenden</button>
+                        <button type="submit" class="btn">Anfrage absenden</button>
                     </div>
                 </form>
                 
                 <div class="success-message" id="success-message">
                     <div class="icon">✅</div>
                     <h3>Anfrage erfolgreich gesendet!</h3>
-                    <p>Wir haben Ihre Anfrage erhalten und melden uns so schnell wie möglich.</p>
-                    <p>Laden Sie hier Ihre persönliche Zusammenfassung herunter:</p>
-                    <button class="download-btn" id="download-pdf">
-                        <span>📄</span> Zusammenfassung als PDF herunterladen
-                    </button>
+                    <p>Wir haben Ihre Nachricht erhalten und melden uns so schnell wie möglich bei Ihnen.</p>
                 </div>
             </div>
             
@@ -653,10 +588,6 @@
     </main>
     
     <script>
-        // Initialize EmailJS (Pascal needs to add his public key)
-        // To set up: https://dashboard.emailjs.com/sign-up
-        // Then replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-        
         // Auto-select option items when radio/checkbox is clicked
         document.querySelectorAll('.option-item input').forEach(input => {
             input.addEventListener('change', () => {
@@ -673,149 +604,56 @@
             });
         });
         
-        // Store form data for PDF generation
-        let storedFormData = {};
+        // Handle form submission with Formspree
+        const form = document.getElementById('questionnaire-form');
         
-        // Form submission
-        document.getElementById('questionnaire-form').addEventListener('submit', async function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const submitBtn = document.getElementById('submit-btn');
+            const submitBtn = form.querySelector('button[type="submit"]');
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner"></span>Wird gesendet...';
-            
-            // Collect form data
-            const formData = new FormData(this);
-            storedFormData = {};
-            formData.forEach((value, key) => {
-                if (storedFormData[key]) {
-                    if (Array.isArray(storedFormData[key])) {
-                        storedFormData[key].push(value);
-                    } else {
-                        storedFormData[key] = [storedFormData[key], value];
-                    }
-                } else {
-                    storedFormData[key] = value;
-                }
-            });
-            
-            // Get checked packages
-            const pakete = [];
-            document.querySelectorAll('input[name="pakete"]:checked').forEach(cb => {
-                pakete.push(cb.value);
-            });
-            storedFormData.pakete = pakete;
+            submitBtn.textContent = 'Wird gesendet...';
             
             try {
-                // Try to send via EmailJS (if configured)
-                // Replace these values with your actual EmailJS credentials:
-                // 1. Go to https://dashboard.emailjs.com
-                // 2. Create an email service (Gmail, Outlook, etc.)
-                // 3. Create an email template with {{name}}, {{email}}, etc.
-                // 4. Get your Public Key from Account > General
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
                 
-                // Comment out the EmailJS code below until you have your credentials:
-                /*
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                    name: storedFormData.name,
-                    email: storedFormData.email,
-                    phone: storedFormData.phone || '-',
-                    company: storedFormData.company || '-',
-                    projektart: storedFormData.projektart || '-',
-                    pakete: storedFormData.pakete.join(', ') || '-',
-                    website_current: storedFormData.website_current || 'Keine',
-                    pages: storedFormData.pages || '-',
-                    funktionen: storedFormData.funktionen || '-',
-                    design: storedFormData.design || '-',
-                    farben: storedFormData.farben || 'Keine Präferenz',
-                    budget: storedFormData.budget || '-',
-                    timeline: storedFormData.timeline || '-',
-                    dringlichkeit: storedFormData.dringlichkeit || '5',
-                    nachricht: storedFormData.nachricht || 'Keine zusätzlichen Informationen'
-                }, 'YOUR_PUBLIC_KEY');
-                */
-                
-                // For now, just show success (EmailJS setup needed)
-                // Remove this line when EmailJS is configured
-                
-                // Show success and hide form
-                this.style.display = 'none';
-                document.getElementById('success-message').classList.add('show');
-                document.getElementById('success-message').scrollIntoView({ behavior: 'smooth' });
-                
+                if (response.ok) {
+                    form.style.display = 'none';
+                    document.getElementById('success-message').classList.add('show');
+                } else {
+                    throw new Error('Network response was not ok');
+                }
             } catch (error) {
-                console.error('Email send failed:', error);
-                document.getElementById('error-message').classList.add('show');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Anfrage absenden';
+                // If Formspree fails, fallback to mailto
+                const formData = new FormData(form);
+                let emailBody = '=== NEUE ANFRAGE ===\n\n';
+                
+                for (let [key, value] of formData.entries()) {
+                    if (key !== 'pakete') {
+                        emailBody += key + ': ' + value + '\n';
+                    }
+                }
+                
+                // Handle multiple checkboxes
+                const pakete = formData.getAll('pakete');
+                if (pakete.length > 0) {
+                    emailBody += 'Pakete: ' + pakete.join(', ') + '\n';
+                }
+                
+                const subject = encodeURIComponent('Neue Webdesign-Anfrage');
+                const body = encodeURIComponent(emailBody);
+                window.location.href = 'mailto:pascalroe@proton.me?subject=' + subject + '&body=' + body;
+                
+                // Still show success since mailto opened
+                form.style.display = 'none';
+                document.getElementById('success-message').classList.add('show');
             }
-        });
-        
-        // PDF Download
-        document.getElementById('download-pdf').addEventListener('click', function() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            
-            // Header
-            doc.setFontSize(22);
-            doc.setTextColor(30, 64, 175);
-            doc.text('Ihre Webdesign-Anfrage', 20, 25);
-            
-            doc.setFontSize(10);
-            doc.setTextColor(100);
-            doc.text('Datum: ' + new Date().toLocaleDateString('de-DE'), 20, 34);
-            doc.text('Vielen Dank für Ihr Vertrauen!', 20, 42);
-            
-            doc.setDrawColor(200);
-            doc.line(20, 48, 190, 48);
-            
-            // Content
-            doc.setFontSize(11);
-            doc.setTextColor(30, 41, 59);
-            let y = 55;
-            
-            const addLine = (label, value) => {
-                doc.setFont(undefined, 'bold');
-                doc.setTextColor(30, 64, 175);
-                doc.text(label, 20, y);
-                y += 6;
-                doc.setFont(undefined, 'normal');
-                doc.setTextColor(30, 41, 59);
-                const lines = doc.splitTextToSize(String(value), 170);
-                doc.text(lines, 20, y);
-                y += lines.length * 6 + 4;
-            };
-            
-            addLine('Name:', storedFormData.name || 'Nicht angegeben');
-            addLine('E-Mail:', storedFormData.email || 'Nicht angegeben');
-            addLine('Telefon:', storedFormData.phone || 'Nicht angegeben');
-            addLine('Unternehmen:', storedFormData.company || 'Nicht angegeben');
-            addLine('Projektart:', (storedFormData.projektart || 'Nicht angegeben').toUpperCase());
-            addLine('Paket-Interesse:', storedFormData.pakete ? storedFormData.pakete.join(', ') : 'Keine Auswahl');
-            addLine('Aktuelle Webseite:', storedFormData.website_current || 'Keine');
-            addLine('Seitenanzahl:', (storedFormData.pages || 'Nicht angegeben').toUpperCase());
-            addLine('Funktionen:', (storedFormData.funktionen || 'Nicht angegeben').toUpperCase());
-            addLine('Design-Style:', (storedFormData.design || 'Nicht angegeben').toUpperCase());
-            addLine('Farben:', storedFormData.farben || 'Keine Präferenz');
-            addLine('Budget:', (storedFormData.budget || 'Nicht angegeben').toUpperCase());
-            addLine('Timeline:', (storedFormData.timeline || 'Nicht angegeben').toUpperCase());
-            addLine('Dringlichkeit:', (storedFormData.dringlichkeit || '5') + ' / 10');
-            addLine('Nachricht:', storedFormData.nachricht || 'Keine zusätzlichen Informationen');
-            
-            // Footer box
-            y += 8;
-            doc.setFillColor(248, 250, 252);
-            doc.rect(15, y, 180, 30, 'F');
-            doc.setFont(undefined, 'bold');
-            doc.setTextColor(30, 41, 59);
-            doc.text('Was passiert jetzt?', 20, y + 8);
-            doc.setFont(undefined, 'normal');
-            doc.setTextColor(71, 85, 105);
-            doc.text('Wir melden uns so schnell wie möglich bei Ihnen.', 20, y + 16);
-            doc.text('Kontakt: pascalroe@proton.me', 20, y + 23);
-            
-            // Download
-            doc.save('Anfrage-Zusammenfassung.pdf');
         });
     </script>
 </body>
