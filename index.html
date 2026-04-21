@@ -976,6 +976,213 @@
             line-height: 1.6;
         }
 
+        /* Self-Service Section */
+        .self-service {
+            background: linear-gradient(160deg, #0f172a 0%, #1e293b 40%, #1e3a5f 70%, #0c4a6e 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+        .self-service::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 65%);
+            border-radius: 50%;
+        }
+        .self-service .container {
+            position: relative;
+            z-index: 1;
+        }
+        .self-service .section-title {
+            color: var(--white);
+        }
+        .self-service .section-subtitle {
+            color: #94a3b8;
+        }
+        .ss-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 950px;
+            margin: 50px auto 0;
+        }
+        .ss-card {
+            background: rgba(255,255,255,0.07);
+            border-radius: 24px;
+            padding: 44px 36px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .ss-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            border-radius: 24px 24px 0 0;
+        }
+        .ss-card:hover::before {
+            transform: scaleX(1);
+        }
+        .ss-card:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(14, 165, 233, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+        }
+        .ss-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            transition: transform 0.4s ease;
+        }
+        .ss-card:hover .ss-icon {
+            transform: scale(1.1) rotate(-3deg);
+        }
+        .ss-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+        .ss-card h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+        .ss-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .ss-price span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+        }
+        .ss-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .ss-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .ss-card li {
+            padding: 8px 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            padding-left: 24px;
+            position: relative;
+        }
+        .ss-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+        .ss-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: var(--white);
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            border-radius: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .ss-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+        }
+        .ss-btn-primary {
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            color: var(--white);
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.35);
+            text-decoration: none;
+        }
+        .ss-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.5);
+        }
+        .ss-ultimate {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            max-width: 950px;
+            margin: 48px auto 0;
+            background: rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 36px 44px;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            transition: all 0.35s ease;
+        }
+        .ss-ultimate:hover {
+            background: rgba(255,255,255,0.12);
+            border-color: rgba(14, 165, 233, 0.5);
+            box-shadow: 0 16px 50px rgba(14, 165, 233, 0.15);
+        }
+        .ss-ultimate-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(14, 165, 233, 0.4);
+        }
+        .ss-ultimate-icon svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+        }
+        .ss-ultimate-text {
+            flex-grow: 1;
+        }
+        .ss-ultimate-text h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        .ss-ultimate-text p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+        .ss-ultimate .ss-btn-primary {
+            flex-shrink: 0;
+        }
+
         /* Warum */
         .warum {
             background: var(--white);
@@ -1262,12 +1469,14 @@
             .trust-item .num {
                 font-size: 1.5rem;
             }
-            .pricing-grid,
-            .maintenance-grid {
+            .pricing-grid {
                 grid-template-columns: 1fr;
                 max-width: 450px;
                 margin: 0 auto;
-                align-items: stretch;
+            }
+            .maintenance-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
             }
             .faq-grid {
                 grid-template-columns: 1fr;
@@ -1417,11 +1626,62 @@
                 border: none;
             }
 
+            /* Mobile Self-Service */
+            .ss-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 450px;
+            }
+            .ss-card {
+                padding: 32px 24px;
+            }
+            .ss-card ul {
+                display: none;
+            }
+            .ss-card .ss-desc {
+                display: block;
+            }
+            .ss-ultimate {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 24px;
+                gap: 20px;
+            }
+            .ss-ultimate-text h3 {
+                font-size: 1.2rem;
+            }
+            .ss-ultimate .ss-btn-primary {
+                width: 100%;
+                text-align: center;
+            }
+
             /* Mobile Maintenance */
             .maintenance-grid {
                 grid-template-columns: 1fr;
                 max-width: 450px;
                 margin: 0 auto;
+                gap: 16px;
+            }
+            .maintenance-card {
+                padding: 24px 20px;
+            }
+            .maintenance-card h4 {
+                font-size: 1rem;
+                margin-bottom: 8px;
+            }
+            .maintenance-card .price {
+                font-size: 1.6rem;
+                margin-bottom: 8px;
+            }
+            .maintenance-card .price span {
+                font-size: 0.75rem;
+            }
+            .maintenance-card ul {
+                display: none;
+            }
+            .maintenance-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
             }
             .maintenance-card {
                 padding: 20px 12px;
@@ -1841,45 +2101,60 @@
         </section>
 
         <!-- Self-Service Section -->
-        <section class="wartung" id="self-service" aria-labelledby="selfservice-title">
+        <section class="self-service" id="self-service" aria-labelledby="selfservice-title">
             <div class="container">
                 <h2 id="selfservice-title" class="section-title">Eigenregie & Hosting-Partner</h2>
                 <p class="section-subtitle">Sie bevorzugen den Do-it-yourself-Ansatz oder möchten nur bestimmte Leistungen? Wir haben passende Optionen.</p>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; max-width: 900px; margin: 50px auto 0;">
-
-                    <article class="maintenance-card alt animate-on-scroll">
-                        <h4>🛠️ Self-Service</h4>
-                        <div class="price">0€ <span>/Monat</span></div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Sie kümmern sich komplett selbst - wir liefern nur die Dateien.</p>
+                <div class="ss-grid">
+                    <article class="ss-card animate-on-scroll">
+                        <div class="ss-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25z" />
+                            </svg>
+                        </div>
+                        <h4>Self-Service</h4>
+                        <div class="ss-price">0€ <span>/Monat</span></div>
+                        <p class="ss-desc">Sie kümmern sich komplett selbst – wir liefern nur die Dateien.</p>
                         <ul>
                             <li>Alle Website-Dateien werden übergeben</li>
                             <li>Sie wählen Ihren eigenen Hoster</li>
                             <li>Änderungen auf Anfrage (nach Aufwand)</li>
                             <li>Support nur per E-Mail</li>
                         </ul>
-                        <a href="mailto:pascalroe@proton.me?subject=Self-Service%20Anfrage" class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">Dateien anfragen</a>
+                        <a href="mailto:pascalroe@proton.me?subject=Self-Service%20Anfrage" class="btn ss-btn">Dateien anfragen</a>
                     </article>
 
-                    <article class="maintenance-card alt animate-on-scroll delay-1">
-                        <h4>🌐 Hosting-Partner</h4>
-                        <div class="price">19-24€ <span>/Monat</span></div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-bottom: 16px;">Wir hosten für Sie - inklusive kleinerer Änderungen.</p>
+                    <article class="ss-card animate-on-scroll delay-1">
+                        <div class="ss-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4 4 0 0 1 4 4v2a.5.5 0 0 1-1 0V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2.5a.5.5 0 0 0-1 0V15a4 4 0 0 1-4 4h-2.25M2.25 15a4 4 0 0 0 4 4h12.5M2.25 15v2.25m13.5-9v2.25M7.5 15v2.25m13.5-9v2.25" />
+                            </svg>
+                        </div>
+                        <h4>Hosting-Partner</h4>
+                        <div class="ss-price">19–24€ <span>/Monat</span></div>
+                        <p class="ss-desc">Wir hosten für Sie – inklusive kleinerer Änderungen.</p>
                         <ul>
                             <li>Jährlich (19€) oder monatlich (24€)</li>
                             <li>Cloudflare-Hosting inklusive</li>
                             <li>Bis zu 2 kleine Änderungen pro Monat</li>
                             <li>Umsetzung innerhalb 48h</li>
                         </ul>
-                        <a href="mailto:pascalroe@proton.me?subject=Hosting-Partner%20Anfrage" class="btn" style="margin-top: 20px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);">Hosting starten</a>
+                        <a href="mailto:pascalroe@proton.me?subject=Hosting-Partner%20Anfrage" class="btn ss-btn-primary">Hosting starten</a>
                     </article>
-
                 </div>
 
-                <div style="text-align: center; margin-top: 48px; padding: 36px; background: var(--gray-50); border-radius: 20px; border: 1px solid var(--gray-200);">
-                    <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--gray-900); margin-bottom: 12px;">Ultimative Betreuung</h3>
-                    <p style="color: var(--gray-600); margin-bottom: 16px;">Premium-Paket inklusive + bis zu 8 Änderungen pro Monat - alles aus einer Hand.</p>
-                    <a href="mailto:pascalroe@proton.me?subject=Ultimative%20Betreuung%20Anfrage" class="btn btn-large">Auf Anfrage →</a>
+                <div class="ss-ultimate animate-on-scroll">
+                    <div class="ss-ultimate-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                    </div>
+                    <div class="ss-ultimate-text">
+                        <h3>Ultimative Betreuung</h3>
+                        <p>Premium-Paket inklusive + bis zu 8 Änderungen pro Monat – alles aus einer Hand.</p>
+                    </div>
+                    <a href="mailto:pascalroe@proton.me?subject=Ultimative%20Betreuung%20Anfrage" class="btn ss-btn-primary">Auf Anfrage →</a>
                 </div>
             </div>
         </section>
@@ -1936,8 +2211,8 @@
                     </article>
                 </div>
 
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="faq.html" class="btn btn-outline animate-on-scroll">Alle FAQs ansehen →</a>
+                <div style="text-align: center; margin-top: 48px;">
+                    <a href="faq.html" class="btn btn-large animate-on-scroll" style="background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%); box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);">Alle FAQs ansehen →</a>
                 </div>
             </div>
         </section>
