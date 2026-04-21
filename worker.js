@@ -6,7 +6,8 @@
  * 2. Diesen Code einfügen und Deployen
  * 3. Die Worker-URL in kontakt.html eintragen (fetch-Ziel)
  * 
- * MailChannels ist kostenlos bei Cloudflare integriert!
+ * TEST-MODUS: E-Mails werden nur geloggt, nicht gesendet
+ * Wenn du eine Domain hast, unten die Kommentare entfernen
  */
 
 export default {
@@ -60,7 +61,7 @@ export default {
         });
       }
 
-      // === 1. E-Mail an dich (Pascal) ===
+      // === 1. E-Mail an dich (Pascal) - TEST-MODUS ===
       const adminEmailBody = `
 Neue Anfrage über Kontaktformular
 ===================================
@@ -73,7 +74,7 @@ Telefon: ${phone}
 Firma: ${company}
 
 PROJEKTDETAILS
---------------
+-------------
 Projektart: ${projektart}
 Gewählte Pakete: ${paketeText}
 
@@ -94,17 +95,19 @@ NACHRICHT
 ${nachricht}
       `.trim();
 
+      // --- EMAIL SENDEN: Kommentar entfernen wenn Domain aktiv ---
+      /*
       await fetch("https://api.mailchannels.net/tx/v1/send", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           personalizations: [
             {
-              to: [{ email: "kontakt@fudora.de" }],  // ← HIER DEINE E-MAIL
+              to: [{ email: "DEINE@EMAIL.DE" }],
               subject: `Neue Anfrage von ${name}`,
             },
           ],
-          from: { email: "noreply@fudora.de" },  // ← HIER DEINE VERIFIZIERTE DOMAIN
+          from: { email: "noreply@DEINE-DOMAIN.DE" },
           content: [
             {
               type: "text/plain",
@@ -113,42 +116,22 @@ ${nachricht}
           ],
         }),
       });
-
-      // === 2. Automatische Bestätigung an Kunden ===
-      const customerEmailBody = `
-Hallo ${name},
-
-vielen Dank für Ihre Anfrage! Wir haben Ihre Nachricht erhalten und werden uns in Kürze bei Ihnen melden.
-
-Hier eine kurze Zusammenfassung Ihrer Anfrage:
-- Projektart: ${projektart}
-- Dringlichkeit: ${dringlichkeit}/10
-
-Wir freuen uns auf die Zusammenarbeit!
-
-Mit freundlichen Grüßen
-Dein Team von Fudora
-      `.trim();
-
-      await fetch("https://api.mailchannels.net/tx/v1/send", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          personalizations: [
-            {
-              to: [{ email: email }],
-              subject: "Wir haben Ihre Nachricht erhalten – Fudora",
-            },
-          ],
-          from: { email: "noreply@fudora.de" },  // ← HIER DEINE VERIFIZIERTE DOMAIN
-          content: [
-            {
-              type: "text/plain",
-              value: customerEmailBody,
-            },
-          ],
-        }),
+      */
+      
+      // Stattdessen: Log fürs Testen (siehe Cloudflare Dashboard → Logs)
+      console.log("=== NEUE ANFRAGE ===", {
+        name, email, phone, company,
+        projektart, paketeText, nachricht, dringlichkeit
       });
+
+      // === 2. Automatische Bestätigung an Kunden - TEST-MODUS ===
+      // --- EMAIL SENDEN: Kommentar entfernen wenn Domain aktiv ---
+      /*
+      const customerEmailBody = `...`;
+      await fetch("https://api.mailchannels.net/tx/v1/send", { ... });
+      */
+      
+      console.log("=== AUTO-ANTWORT WÜRDE AN ===", email);
 
       // Erfolgsantwort
       return new Response(
