@@ -777,7 +777,7 @@
         if (paket) {
             var field = document.getElementById('paket');
             if (field) field.value = paket;
-            var nameMap = {'basis': 'Basis-Paket (690€)', 'standard': 'Standard-Paket (1.290€)', 'premium': 'Premium-Paket (2.490€)'};
+            var nameMap = {'basis': 'Basis-Paket', 'standard': 'Standard- Paket', 'premium': 'Premium- Paket'};
             var displayName = nameMap[paket] || (paket.charAt(0).toUpperCase() + paket.slice(1));
             var info = document.getElementById('paket-info');
             var nameEl = document.getElementById('paket-name');
