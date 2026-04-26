@@ -1436,6 +1436,13 @@
             outline-offset: 3px;
         }
 
+        /* Pakete-Seite nur mobil erreichbar */
+        @media (min-width: 901px) {
+            .mobile- only {
+                display: none;
+            }
+        }
+
         /* Mobile */
         @media (max-width: 900px) {
             .choice-grid {
@@ -1943,7 +1950,7 @@
                             <a href="kontakt.html" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
-                            <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
+                            <a href="pakete.html" class="btn btn-outline mobile-only">Mehr erfahren</a>
                         </div>
                     </article>
 
@@ -1972,7 +1979,7 @@
                             <a href="kontakt.html" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
-                            <a href="pakete.html" class="btn">Mehr erfahren</a>
+                            <a href="pakete.html" class="btn mobile-only">Mehr erfahren</a>
                         </div>
                     </article>
 
@@ -2000,7 +2007,7 @@
                             <a href="kontakt.html" class="btn">Jetzt anfragen</a>
                         </div>
                         <div class="pricing-buttons">
-                            <a href="pakete.html" class="btn btn-outline">Mehr erfahren</a>
+                            <a href="pakete.html" class="btn btn-outline mobile-only">Mehr erfahren</a>
                         </div>
                     </article>
                 </div>
