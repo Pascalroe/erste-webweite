@@ -1501,6 +1501,19 @@
                 font-size: 2rem;
             }
         }
+        /* Tablet: 2- spaltiges Pakete- Grid */
+        @media (max- width: 1024px) and (min- width: 769px) {
+            .pakete .container > div {
+                grid- template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            .pakete .container > div > div: nth-child(3) {
+                grid-column: 1 / -1;
+                max- width: 50%;
+                margin: 0 auto;
+            }
+        }
+
         @media (max-width: 600px) {
             nav .container {
                 flex-direction: row;
