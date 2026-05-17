@@ -1582,7 +1582,7 @@
             padding-top: 24px;
         }
         .templates-grid {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(5, 1fr);
             gap: 16px;
             margin-top: 40px;
@@ -1634,8 +1634,88 @@
             display: none;
         }
         
+        /* Gallery Styles */
+        .templates-gallery {
+            position: relative;
+            display: block;
+            max-width: 1100px;
+            margin: 40px auto 0;
+        }
+        
+        .templates-gallery .templates-grid {
+            display: flex;
+            overflow: hidden;
+            gap: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        .templates-gallery .template-card {
+            flex: 0 0 calc(33.333% - 11px);
+            min-width: calc(33.333% - 11px);
+        }
+        
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(34, 211, 238, 0.15);
+            border: 2px solid rgba(34, 211, 238, 0.4);
+            color: #22d3ee;
+            font-size: 28px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            padding: 0;
+        }
+        
+        .gallery-arrow:hover {
+            background: rgba(34, 211, 238, 0.3);
+            border-color: #22d3ee;
+        }
+        
+        .gallery-prev {
+            left: -24px;
+        }
+        
+        .gallery-next {
+            right: -24px;
+        }
+        
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .gallery-dot.active {
+            background: #22d3ee;
+            transform: scale(1.2);
+        }
+        
         @media (max-width: 1024px) {
+            .templates-gallery {
+                display: none;
+            }
             .templates-grid {
+                display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 gap: 12px;
             }
@@ -3773,37 +3853,42 @@
                 <h2 id="templates-title" class="section-title">Was ist möglich?</h2>
                 <p class="section-subtitle">Entdecken Sie unsere professionellen Templates für verschiedene Branchen</p>
                 
-                <div class="templates-grid">
-                    <a href="referenzen.html" class="template-card animate-on-scroll" data-desktop-href="https://pascalroe.github.io/template1/">
-                        <div class="template-preview">
-                            <img src="img/template1-preview.png" alt="NEURONIX Template" loading="lazy">
-                        </div>
-                        <div class="template-name">NEURONIX</div>
-                    </a>
-                    <a href="referenzen.html" class="template-card animate-on-scroll delay-1" data-desktop-href="https://pascalroe.github.io/template2/">
-                        <div class="template-preview">
-                            <img src="img/template2-preview.png" alt="ÉTOILE Template" loading="lazy">
-                        </div>
-                        <div class="template-name">ÉTOILE</div>
-                    </a>
-                    <a href="referenzen.html" class="template-card animate-on-scroll delay-2" data-desktop-href="https://pascalroe.github.io/template3/">
-                        <div class="template-preview">
-                            <img src="img/template3-preview.png" alt="NOIR//SYSTEM Template" loading="lazy">
-                        </div>
-                        <div class="template-name">NOIR//SYSTEM</div>
-                    </a>
-                    <a href="referenzen.html" class="template-card animate-on-scroll delay-3" data-desktop-href="https://pascalroe.github.io/template4/">
-                        <div class="template-preview">
-                            <img src="img/template4-preview.png" alt="Meisterwerk Hoffmann Template" loading="lazy">
-                        </div>
-                        <div class="template-name">Meisterwerk</div>
-                    </a>
-                    <a href="referenzen.html" class="template-card animate-on-scroll delay-4" data-desktop-href="https://pascalroe.github.io/template5/">
-                        <div class="template-preview">
-                            <img src="img/template5-preview.png" alt="SV Grünweiß Template" loading="lazy">
-                        </div>
-                        <div class="template-name">SV Grünweiß</div>
-                    </a>
+                <div class="templates-gallery">
+                    <button class="gallery-arrow gallery-prev" aria-label="Vorheriges Template">‹</button>
+                    <button class="gallery-arrow gallery-next" aria-label="Nächstes Template">›</button>
+                    <div class="templates-grid">
+                        <a href="referenzen.html" class="template-card animate-on-scroll" data-desktop-href="https://pascalroe.github.io/template1/">
+                            <div class="template-preview">
+                                <img src="img/template1-preview.png" alt="NEURONIX Template" loading="lazy">
+                            </div>
+                            <div class="template-name">NEURONIX</div>
+                        </a>
+                        <a href="referenzen.html" class="template-card animate-on-scroll delay-1" data-desktop-href="https://pascalroe.github.io/template2/">
+                            <div class="template-preview">
+                                <img src="img/template2-preview.png" alt="ÉTOILE Template" loading="lazy">
+                            </div>
+                            <div class="template-name">ÉTOILE</div>
+                        </a>
+                        <a href="referenzen.html" class="template-card animate-on-scroll delay-2" data-desktop-href="https://pascalroe.github.io/template3/">
+                            <div class="template-preview">
+                                <img src="img/template3-preview.png" alt="NOIR//SYSTEM Template" loading="lazy">
+                            </div>
+                            <div class="template-name">NOIR//SYSTEM</div>
+                        </a>
+                        <a href="referenzen.html" class="template-card animate-on-scroll delay-3" data-desktop-href="https://pascalroe.github.io/template4/">
+                            <div class="template-preview">
+                                <img src="img/template4-preview.png" alt="Meisterwerk Hoffmann Template" loading="lazy">
+                            </div>
+                            <div class="template-name">Meisterwerk</div>
+                        </a>
+                        <a href="referenzen.html" class="template-card animate-on-scroll delay-4" data-desktop-href="https://pascalroe.github.io/template5/">
+                            <div class="template-preview">
+                                <img src="img/template5-preview.png" alt="SV Grünweiß Template" loading="lazy">
+                            </div>
+                            <div class="template-name">SV Grünweiß</div>
+                        </a>
+                    </div>
+                    <div class="gallery-dots"></div>
                 </div>
                 
                 <p class="templates-mobile-text">Probieren Sie unsere 5 professionellen Templates aus und finden Sie das Passende für Ihr Projekt.</p>
@@ -3971,6 +4056,53 @@
         // Update on load and resize
         updateTemplateLinks();
         window.addEventListener('resize', updateTemplateLinks);
+        
+        // Gallery Slider
+        const gallery = document.querySelector('.templates-gallery');
+        if (gallery) {
+            const grid = gallery.querySelector('.templates-grid');
+            const cards = Array.from(grid.querySelectorAll('.template-card'));
+            const totalCards = cards.length;
+            const visibleCards = 3;
+            const cardWidth = cards[0].offsetWidth + 16; // include gap
+            const maxSlide = Math.max(0, totalCards - visibleCards);
+            
+            let currentSlide = 0;
+            
+            // Create dots
+            const dotsContainer = gallery.querySelector('.gallery-dots');
+            const totalDots = maxSlide + 1;
+            
+            for (let i = 0; i <= maxSlide; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', 'Zu Template ' + (i + 1));
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+            
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.gallery-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            function goToSlide(index) {
+                currentSlide = Math.max(0, Math.min(index, maxSlide));
+                grid.style.transform = 'translateX(-' + (currentSlide * cardWidth) + 'px)';
+                updateDots();
+            }
+            
+            // Arrow buttons
+            gallery.querySelector('.gallery-prev').addEventListener('click', () => {
+                if (currentSlide > 0) goToSlide(currentSlide - 1);
+            });
+            
+            gallery.querySelector('.gallery-next').addEventListener('click', () => {
+                if (currentSlide < maxSlide) goToSlide(currentSlide + 1);
+            });
+        }
     </script>
 </body>
 </html>
