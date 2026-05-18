@@ -1756,6 +1756,11 @@
             .templates-gallery {
                 display: none;
             }
+            /* Pfeile auf Tablet und Mobile ausblenden */
+            .gallery-prev,
+            .gallery-next {
+                display: none !important;
+            }
             .templates-grid {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -3777,6 +3782,8 @@
                 <p class="section-subtitle">Entdecken Sie unsere professionellen Templates für verschiedene Branchen</p>
                 
                 <div class="templates-gallery">
+                    <button class="gallery-arrow gallery-prev" aria-label="Vorheriges Template">‹</button>
+                    <button class="gallery-arrow gallery-next" aria-label="Nächstes Template">›</button>
                     <div class="gallery-track">
                         <a href="https://pascalroe.github.io/template1/" class="template-card animate-on-scroll" data-desktop-href="https://pascalroe.github.io/template1/">
                             <div class="template-preview">
@@ -4179,6 +4186,22 @@
             function goToSlide(index) {
                 currentIndex = index;
                 updateCarousel();
+            }
+
+            // Infinite loop - nur Desktop
+            const prevBtn = gallery.querySelector('.gallery-prev');
+            const nextBtn = gallery.querySelector('.gallery-next');
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                    updateCarousel();
+                });
+                
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % totalCards;
+                    updateCarousel();
+                });
             }
 
             // Touch swipe support for mobile
