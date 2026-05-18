@@ -4188,6 +4188,30 @@
                 updateCarousel();
             });
             
+            // Touch swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const SWIPE_THRESHOLD = 50;
+            
+            gallery.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            gallery.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > SWIPE_THRESHOLD) {
+                    if (diff > 0) {
+                        // Swipe left - next
+                        currentIndex = (currentIndex + 1) % totalCards;
+                    } else {
+                        // Swipe right - prev
+                        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                    }
+                    updateCarousel();
+                }
+            });
+            
             // Initial state
             updateCarousel();
         }
