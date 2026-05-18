@@ -4202,11 +4202,11 @@
                 const diff = touchStartX - touchEndX;
                 if (Math.abs(diff) > SWIPE_THRESHOLD) {
                     if (diff > 0) {
-                        // Swipe left - next
-                        currentIndex = (currentIndex + 1) % totalCards;
-                    } else {
-                        // Swipe right - prev
+                        // Swipe left - prev
                         currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+                    } else {
+                        // Swipe right - next
+                        currentIndex = (currentIndex + 1) % totalCards;
                     }
                     updateCarousel();
                 }
