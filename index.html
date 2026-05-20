@@ -2130,47 +2130,33 @@
             
             /* Kompakter Hero */
             .hero {
-                padding: 80px 0 40px;
+                padding: 40px 0 20px;
                 min-height: auto;
             }
             .hero h1 {
                 font-size: 1.75rem;
                 margin-bottom: 12px;
             }
-            .hero-subtitle {
+            .hero p {
                 font-size: 1rem;
-                margin-bottom: 8px;
-            }
-            .hero-description {
-                font-size: 0.9rem;
                 margin-bottom: 20px;
             }
-            .hero-features {
-                gap: 8px;
-                margin-bottom: 24px;
+            .hero-trust {
+                margin-bottom: 16px;
+                gap: 12px;
             }
-            .hero-features li {
-                font-size: 0.85rem;
-                padding: 6px 0;
-                padding-left: 24px;
+            .hero-trust .trust-item {
+                padding: 10px 14px;
+            }
+            .hero-trust .trust-item .num {
+                font-size: 1.25rem;
             }
             .hero-actions {
                 gap: 12px;
             }
-            .hero-actions .btn {
-                padding: 12px 20px;
-                font-size: 0.9rem;
-                min-height: 44px;
-            }
-            .hero-trust {
-                gap: 12px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero-trust .trust-item {
-                padding: 10px 16px;
-                min-width: auto;
-                font-size: 0.8rem;
+            .hero-actions .btn-large {
+                padding: 12px 24px;
+                font-size: 0.95rem;
             }
             
             /* Kompakte Sektionen */
@@ -2184,6 +2170,37 @@
             .section-subtitle {
                 font-size: 0.9rem;
                 margin-bottom: 24px;
+            }
+
+            /* Pricing - 1 Spalte + nur 3 Features */
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .pricing-card {
+                padding: 24px 20px;
+                min-height: auto;
+            }
+            .pricing-features {
+                text-align: left;
+            }
+            .pricing-features li:nth-child(n+4) {
+                display: none;
+            }
+
+            /* Warum Section - gestapelt */
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .why-card {
+                padding: 20px;
+            }
+
+            /* Choice Section - bereits gestapelt */
+            .choice-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             /* Mobile Choice Cards - KOMPAKT mit Glass-Card Design */
